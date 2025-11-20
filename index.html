@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kajal Suthar | Portfolio</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* -----------------------------------
+      GLOBAL STYLES
+------------------------------------*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #DE3163; /* Cerise pink */
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* -----------------------------------
+      NAVBAR
+------------------------------------*/
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 15px 40px;
+  z-index: 999;
+  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 26px;
+  font-weight: 700;
+}
+.logo span { color: yellow; }
+
+.navbar ul {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+}
+
+.navbar a {
+  font-weight: 500;
+  transition: 0.3s;
+}
+.navbar a:hover,
+.navbar a.active { color: yellow; }
+
+/* -----------------------------------
+      HERO
+------------------------------------*/
+#hero {
+  height: 100vh;
+  padding: 130px 40px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hero-content {
+  max-width: 550px;
+  animation: fadeIn 1s ease;
+}
+
+.hero-content h1 {
+  font-size: 48px;
+  font-weight: 700;
+}
+.hero-content span { color: yellow; }
+
+.hero-content h2 {
+  font-size: 24px;
+  margin: 10px 0;
+}
+.hero-content p {
+  margin: 10px 0 20px;
+  font-weight: 300;
+}
+
+.btn {
+  background: yellow;
+  color: black;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  display: inline-block;
+  transition: 0.3s;
+}
+.btn:hover { background: #fff; }
+
+.hero-img img {
+  width: 360px;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Floating animation */
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* -----------------------------------
+      ABOUT
+------------------------------------*/
+#about {
+  padding: 80px 40px;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 36px;
+  margin-bottom: 30px;
+}
+
+.about-container {
+  max-width: 900px;
+  margin: auto;
+  background: rgba(255,255,255,0.15);
+  padding: 25px;
+  border-radius: 18px;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.about-container img {
+  width: 180px;
+  border-radius: 50%;
+}
+
+/* -----------------------------------
+      SKILLS
+------------------------------------*/
+#skills {
+  padding: 80px 40px;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+  gap: 20px;
+}
+
+.skill-card {
+  background: rgba(255,255,255,0.15);
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.bar {
+  width: 100%;
+  height: 10px;
+  background: rgba(255,255,255,0.25);
+  border-radius: 6px;
+  margin-top: 8px;
+}
+.bar span {
+  display: block;
+  height: 100%;
+  background: yellow;
+  border-radius: 6px;
+}
+
+/* -----------------------------------
+      PROJECTS
+------------------------------------*/
+#projects {
+  padding: 80px 40px;
+}
+
+.filter-buttons {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.filter-buttons button {
+  background: rgba(255,255,255,0.2);
+  border: none;
+  padding: 8px 16px;
+  margin: 3px;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.filter-buttons button.active,
+.filter-buttons button:hover {
+  background: yellow;
+  color: black;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+  gap: 25px;
+}
+
+.project-card {
+  background: rgba(255,255,255,0.15);
+  padding: 15px;
+  border-radius: 14px;
+  text-align: center;
+  transition: 0.3s;
+}
+.project-card:hover { transform: scale(1.05); }
+
+.project-card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+/* -----------------------------------
+      CONTACT
+------------------------------------*/
+#contact {
+  padding: 80px 40px;
+  text-align: center;
+}
+
+#contactForm {
+  max-width: 500px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input, textarea {
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+}
+textarea { height: 140px; }
+
+/* -----------------------------------
+      FOOTER
+------------------------------------*/
+footer {
+  text-align: center;
+  padding: 18px;
+  background: rgba(255,255,255,0.15);
+  margin-top: 40px;
+}
+
+/* -----------------------------------
+      RESPONSIVE
+------------------------------------*/
+@media(max-width: 850px) {
+  #hero {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 30px;
+  }
+  .hero-img img { width: 250px; }
+  .about-container { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ---------------- NAVBAR ---------------- -->
+<header>
+  <nav class="navbar">
+    <div class="logo">Kajal<span>.</span></div>
+    <ul>
+      <li><a href="#hero" class="active">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ---------------- HERO ---------------- -->
+<section id="hero">
+  <div class="hero-content">
+    <h1>Hi, I’m <span>Kajal Suthar</span></h1>
+    <h2>Creative Developer & Designer</h2>
+    <p>I create cute, modern & delightful digital experiences.</p>
+    <a href="#projects" class="btn">View My Work</a>
+  </div>
+
+  <div class="hero-img">
+    <img src="https://i.postimg.cc/c4fxyNJ1/cute-cartoon-girl.png" alt="Cute Cartoon Girl">
+  </div>
+</section>
+
+<!-- ---------------- ABOUT ---------------- -->
+<section id="about">
+  <h2 class="section-title">About Me</h2>
+
+  <div class="about-container">
+    <img src="https://i.postimg.cc/t4p7qCBN/cute-avatar.png" alt="profile">
+    <p>
+      I’m Kajal — a creative web developer who loves making cute, modern and aesthetic websites.
+      I mix imagination with code to create magical digital experiences.
+    </p>
+  </div>
+</section>
+
+<!-- ---------------- SKILLS ---------------- -->
+<section id="skills">
+  <h2 class="section-title">Skills</h2>
+
+  <div class="skills-grid">
+    <div class="skill-card">
+      <h3>HTML</h3>
+      <div class="bar"><span style="width: 95%"></span></div>
+    </div>
+    <div class="skill-card">
+      <h3>CSS</h3>
+      <div class="bar"><span style="width: 90%"></span></div>
+    </div>
+    <div class="skill-card">
+      <h3>JavaScript</h3>
+      <div class="bar"><span style="width: 80%"></span></div>
+    </div>
+    <div class="skill-card">
+      <h3>UI Design</h3>
+      <div class="bar"><span style="width: 85%"></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------------- PROJECTS ---------------- -->
+<section id="projects">
+  <h2 class="section-title">My Projects</h2>
+
+  <div class="filter-buttons">
+    <button class="active" data-filter="all">All</button>
+    <button data-filter="web">Web</button>
+    <button data-filter="ui">UI</button>
+    <button data-filter="app">Apps</button>
+  </div>
+
+  <div class="projects-grid">
+
+    <div class="project-card web">
+      <img src="https://i.postimg.cc/3NtzsR5n/project1.jpg">
+      <h3>Portfolio Website</h3>
+      <p>HTML, CSS, JS</p>
+      <a href="https://yourwebsite1.com" class="btn" target="_blank">View Project</a>
+    </div>
+
+    <div class="project-card ui">
+      <img src="https://i.postimg.cc/QCMzc1YL/project2.jpg">
+      <h3>UI Dashboard</h3>
+      <p>Figma, UI/UX</p>
+      <a href="https://yourwebsite2.com" class="btn" target="_blank">View Project</a>
+    </div>
+
+    <div class="project-card app">
+      <img src="https://i.postimg.cc/63wZFnR6/project3.jpg">
+      <h3>Mobile App UI</h3>
+      <p>Flutter Design</p>
+      <a href="https://yourwebsite3.com" class="btn" target="_blank">View Project</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ---------------- CONTACT ---------------- -->
+<section id="contact">
+  <h2 class="section-title">Contact Me</h2>
+
+  <form id="contactForm">
+    <input type="text" id="name" placeholder="Your Name">
+    <input type="email" id="email" placeholder="Your Email">
+    <textarea id="message" placeholder="Your Message"></textarea>
+    <button type="submit" class="btn">Send Message</button>
+  </form>
+
+  <p id="formMsg"></p>
+</section>
+
+<!-- ---------------- FOOTER ---------------- -->
+<footer>
+  © 2025 Kajal Suthar — Crafted with ❤️  
+</footer>
+
+<!-- ---------------- JAVASCRIPT ---------------- -->
+<script>
+// Active Navbar
+const navLinks = document.querySelectorAll("nav ul li a");
+const sections = document.querySelectorAll("section");
+
+window.addEventListener("scroll", () => {
+  let current = "";
+  sections.forEach(sec => {
+    if (pageYOffset >= sec.offsetTop - 150) current = sec.id;
+  });
+
+  navLinks.forEach(a => {
+    a.classList.remove("active");
+    if (a.getAttribute("href").includes(current)) a.classList.add("active");
+  });
+});
+
+// Project Filter
+const filterBtns = document.querySelectorAll(".filter-buttons button");
+const cards = document.querySelectorAll(".project-card");
+
+filterBtns.forEach(btn => {
+  btn.onclick = () => {
+    document.querySelector(".filter-buttons .active").classList.remove("active");
+    btn.classList.add("active");
+
+    let cat = btn.dataset.filter;
+    cards.forEach(card => {
+      card.style.display = (cat === "all" || card.classList.contains(cat)) 
+                           ? "block" : "none";
+    });
+  };
+});
+
+// Contact Form
+document.getElementById("contactForm").addEventListener("submit", e => {
+  e.preventDefault();
+
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const msg = document.getElementById("message").value.trim();
+  const output = document.getElementById("formMsg");
+
+  if (!name || !email || !msg) {
+    output.textContent = "Please fill all fields!";
+    output.style.color = "yellow";
+    return;
+  }
+
+  output.textContent = "Message sent successfully! 💌";
+  output.style.color = "lightgreen";
+
+  document.getElementById("contactForm").reset();
+});
+</script>
+
+</body>
+</html>
