@@ -1,327 +1,318 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- SEO -->
 <title>Kajal Suthar | Frontend Developer</title>
+<meta name="description" content="Portfolio of Kajal Suthar – Frontend Developer specializing in React, building clean, modern & responsive web experiences." />
+<meta property="og:title" content="Kajal Suthar | Frontend Developer" />
+<meta property="og:description" content="Frontend Developer Portfolio showcasing projects, skills, and contact details." />
+
+<!-- ADDED: GOOGLE FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
-/* ===== GLOBAL STYLES ===== */
-*{box-sizing:border-box;margin:0;padding:0;font-family:'Poppins',sans-serif;}
-body{scroll-behavior:smooth;transition:all 0.3s;background:linear-gradient(-45deg,#FFB6C1,#87CEEB,#9370DB,#FFD700);background-size:400% 400%;animation:gradientBG 15s ease infinite;color:#222;}
-a{text-decoration:none;color:inherit;}
-ul{list-style:none;}
-button{cursor:pointer;transition:all 0.3s;}
-img{max-width:100%;display:block;}
-h2,h1,p{animation:fadeIn 1.5s ease forwards;opacity:0;}
+/* ------------ RESET ------------ */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: "Poppins", sans-serif; }
+body { 
+  color: #222; 
+  line-height: 1.6; 
+  scroll-behavior: smooth;
 
-/* ===== BACKGROUND ANIMATION ===== */
-@keyframes gradientBG{
-0%{background-position:0% 50%;}
-50%{background-position:100% 50%;}
-100%{background-position:0% 50%;}
+  /* ADDED: GRADIENT BACKGROUND (Blue + Blush Pink + Purple) */
+  background: linear-gradient(135deg, #5c6efc, #ffb3d9, #b36bff);
+  background-size: 400% 400%;
+  animation: backMove 12s infinite alternate;
 }
 
-/* ===== FADE IN TEXT ===== */
-@keyframes fadeIn{
-0%{opacity:0;transform:translateY(20px);}
-100%{opacity:1;transform:translateY(0);}
+/* ADDED: BACKGROUND ANIMATION */
+@keyframes backMove {
+  0%{background-position:0% 50%}
+  100%{background-position:100% 50%}
 }
 
-/* ===== BUTTON ANIMATION ===== */
-button{
-  padding:0.8rem 1.5rem;
-  border:none;
-  border-radius:25px;
-  background:linear-gradient(45deg,#FFB6C1,#87CEEB,#9370DB);
-  color:#222;
-  font-weight:bold;
+/* ------------ DARK MODE ------------ */
+/* ADDED */
+.dark-mode {
+  background: #121212 !important;
+  color: #f5f5f5 !important;
+}
+.dark-mode nav,
+.dark-mode .project,
+.dark-mode .skill-box,
+.dark-mode .about,
+.dark-mode footer,
+.dark-mode .contact-form input,
+.dark-mode .contact-form textarea {
+  background: #1e1e1e !important;
+  color: white !important;
+  border-color: #444 !important;
+}
+
+/* ------------ NAV ------------ */
+nav {
+  width: 100%; position: fixed; top: 0; left: 0; z-index: 100;
+  background: #fff; padding: 15px 40px; display: flex;
+  justify-content: space-between; align-items: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+nav ul { display: flex; gap: 30px; list-style: none; }
+nav ul li a { text-decoration: none; color: #333; font-weight: 600; }
+
+.hamburger { display: none; cursor: pointer; font-size: 26px; }
+
+/* ADDED: DARK MODE TOGGLE BUTTON */
+.toggle-btn{
+  cursor:pointer;
+  background:#4b67f5;
+  color:white;
+  padding:10px 18px;
+  border-radius:6px;
+  font-size:14px;
+  margin-left:20px;
   transition:0.3s;
-  position:relative;
-  overflow:hidden;
 }
-button::before{
-  content:'';
-  position:absolute;
-  top:0;
-  left:-100%;
-  width:100%;
-  height:100%;
-  background:rgba(255,255,255,0.2);
-  transform:skewX(-20deg);
-  transition:0.5s;
+.toggle-btn:hover{ background:#3347c5; }
+
+/* ------------ SECTIONS ------------ */
+section { padding: 100px 40px; }
+
+/* ------------ HERO ------------ */
+.hero {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 40px; flex-wrap: wrap;
 }
-button:hover::before{left:200%;}
-button:hover{transform:scale(1.1);box-shadow:0 0 20px rgba(255,182,193,0.7),0 0 30px rgba(135,206,235,0.7);}
 
-/* ===== PRELOADER ===== */
-#preloader{position:fixed;top:0;left:0;width:100%;height:100%;background:#fff;display:flex;justify-content:center;align-items:center;z-index:10000;}
-#preloader span{width:50px;height:50px;border:5px solid #FFB6C1;border-top:5px solid #87CEEB;border-radius:50%;display:block;animation:spin 1s linear infinite;}
-@keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
-
-/* ===== NAVBAR ===== */
-nav{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;background:rgba(255,255,255,0.6);backdrop-filter:blur(5px);z-index:1000;}
-nav ul{display:flex;gap:1.5rem;}
-nav ul li a.active{border-bottom:2px solid #222;}
-#mode-toggle{padding:0.3rem 0.8rem;border-radius:20px;background:#FFB6C1;color:#222;font-weight:bold;}
-
-/* ===== HERO ===== */
-.hero{height:100vh;display:flex;align-items:center;justify-content:center;position:relative;}
-.hero-content{display:flex;align-items:center;justify-content:center;gap:3rem;flex-wrap:wrap;perspective:1000px;}
-.hero-image img{
-  width:300px;
-  height:300px;
-  border-radius:50%;
-  box-shadow:0 0 30px rgba(255,182,193,0.8),0 0 60px rgba(135,206,235,0.6);
-  transform:rotateY(10deg) rotateX(5deg);
-  transition:transform 0.5s, box-shadow 0.5s;
+/* ADDED: ROUND IMAGE */
+.hero img {
+  width: 350px; 
+  height: 350px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  border: 6px solid white;
+  transition: 0.4s;
 }
-.hero-image img:hover{
-  transform:rotateY(0deg) rotateX(0deg) scale(1.05);
-  box-shadow:0 0 50px rgba(255,182,193,1),0 0 100px rgba(135,206,235,0.8);
+.hero img:hover{
+  transform: scale(1.05);
 }
-.hero-text h1{
-  font-size:3rem;
-  color:#222;
-  text-shadow:0 0 10px #FFB6C1,0 0 20px #87CEEB,0 0 30px #9370DB;
+
+.hero-text h1 { font-size: 45px; margin-bottom: 15px; }
+.hero-text p { margin-bottom: 20px; font-size: 18px; }
+
+/* ADDED: BUTTON EFFECTS */
+.btn { 
+  padding: 12px 25px; background: #4b67f5; color: #fff; 
+  border-radius: 6px; text-decoration: none; font-weight: bold; 
+  margin-right: 10px; 
+  transition: 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
-.hero-text p{
-  font-size:1.5rem;
-  font-weight:bold;
-  color:#222;
+.btn:hover{
+  background:#3a4cd1;
+  transform: translateY(-3px);
 }
-.hero-text .btn{margin-top:1rem;}
 
-/* ===== SECTIONS ===== */
-section{padding:5rem 2rem;opacity:0;transform:translateY(50px);transition:all 1s ease;}
-section.visible{opacity:1;transform:translateY(0);}
-h2{text-align:center;font-size:2.5rem;margin-bottom:3rem;text-shadow:1px 1px 2px rgba(0,0,0,0.1);}
+/* ------------ ABOUT ------------ */
+.about { max-width: 800px; margin: auto; padding:20px; background:white; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.1); }
+.about p { margin: 10px 0; font-size: 17px; }
 
-/* ===== CONTAINER ===== */
-.container{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;}
+/* ------------ SKILLS ------------ */
+.skills-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px; margin-top: 25px;
+}
+.skill-box {
+  background: #fff; padding: 20px; border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
 
-/* ===== PROJECTS ===== */
-.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;}
-.project-card{background:rgba(255,255,255,0.3);padding:1.5rem;border-radius:15px;position:relative;cursor:pointer;transition:0.3s;}
-.project-card:hover{transform:translateY(-10px);background:rgba(255,255,255,0.5);}
-.project-card img{border-radius:10px;margin-bottom:1rem;}
-.filter-buttons{display:flex;justify-content:center;gap:1rem;margin-bottom:2rem;flex-wrap:wrap;}
-.filter-buttons button{background:#fff;color:#222;}
-.filter-buttons button.active{background:#FFB6C1;color:#222;}
+/* ------------ PROJECTS ------------ */
+.projects-grid {
+  display: grid; gap: 25px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+.project {
+  background: #fff; padding: 15px; border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition:0.3s;
+}
+.project:hover{
+  transform: scale(1.03);
+}
+.project img {
+  width: 100%; border-radius: 10px; height: 180px; object-fit: cover;
+}
 
-/* ===== SKILLS ===== */
-.skills-list{display:flex;flex-direction:column;gap:1rem;width:100%;max-width:400px;}
-.skill-bar{background:rgba(255,255,255,0.3);border-radius:25px;overflow:hidden;height:25px;position:relative;}
-.skill-bar span{display:block;height:100%;width:0;background:#FFB6C1;text-align:right;line-height:25px;padding-right:0.5rem;font-weight:bold;transition:width 2s;}
+/* ------------ CONTACT ------------ */
+.contact-form {
+  max-width: 600px; margin: auto; display: flex; flex-direction: column; gap: 15px;
+}
+.contact-form input, .contact-form textarea {
+  width: 100%; padding: 12px; border-radius: 6px;
+  border: 1px solid #ccc;
+}
+.contact-form button {
+  padding: 12px; background: #4b67f5; border: none;
+  color: #fff; font-size: 16px; border-radius: 6px; transition:0.3s;
+}
+.contact-form button:hover{ background:#324bd1; }
 
-/* ===== SERVICES ===== */
-.services-card{background:rgba(255,255,255,0.3);padding:1rem;border-radius:15px;width:250px;text-align:center;transition:0.3s;}
-.services-card:hover{transform:translateY(-10px);background:rgba(255,255,255,0.5);}
+/* ------------ FOOTER ------------ */
+footer {
+  text-align: center; padding: 20px; margin-top: 40px;
+  background: #eee;
+}
 
-/* ===== TESTIMONIALS ===== */
-.testimonial{background:rgba(255,255,255,0.3);padding:1rem;border-radius:15px;margin:1rem;max-width:300px;transition:0.3s;}
-.testimonial:hover{transform:translateY(-10px);background:rgba(255,255,255,0.5);}
+/* ------------ CUSTOM CURSOR ------------ */
+/* ADDED */
+body{
+  cursor: url('cursor1.cur'), auto;
+}
 
-/* ===== CONTACT ===== */
-.contact form{display:flex;flex-direction:column;gap:1rem;width:100%;max-width:400px;}
-.contact input,.contact textarea{padding:0.8rem;border-radius:10px;border:none;background:#fff;color:#222;}
-.contact button{padding:0.8rem;border-radius:25px;border:none;background:linear-gradient(45deg,#FFB6C1,#87CEEB,#9370DB);color:#222;font-weight:bold;}
-
-/* ===== BACK TO TOP ===== */
-#backToTop{position:fixed;bottom:20px;right:20px;padding:0.5rem 1rem;border-radius:20px;background:#FFB6C1;color:#222;font-weight:bold;cursor:pointer;display:none;}
-
-/* ===== MODAL LIGHTBOX ===== */
-#lightbox{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);display:none;justify-content:center;align-items:center;z-index:10000;}
-#lightbox img{max-width:90%;max-height:80%;border-radius:10px;}
-
-/* ===== RESPONSIVE ===== */
-@media(max-width:768px){
-  .hero h1{font-size:2.2rem;}
-  .hero p{font-size:1rem;}
-  .hero-content{flex-direction:column;}
-  .hero-image img{width:200px;height:200px;}
+/* ------------ RESPONSIVE ------------ */
+@media(max-width: 768px){
+  .hamburger { display: block; }
+  nav ul {
+    position: absolute; top: 70px; left: -100%; width: 100%; flex-direction: column;
+    background: #fff; padding: 20px 0; text-align: center; transition: 0.3s;
+  }
+  nav ul.active { left: 0; }
+  .hero { text-align: center; justify-content: center; }
 }
 </style>
+
 </head>
 <body>
 
-<!-- PRELOADER -->
-<div id="preloader"><span></span></div>
+<!-- ---------------- NAVBAR ---------------- -->
+<nav>
+  <h2>Kajal.</h2>
+  <div class="hamburger">&#9776;</div>
 
-<!-- NAVBAR -->
-<nav id="navbar">
-  <div class="logo">Kajal Suthar</div>
   <ul>
-    <li><a href="#home" class="nav-link active">Home</a></li>
-    <li><a href="#about" class="nav-link">About</a></li>
-    <li><a href="#skills" class="nav-link">Skills</a></li>
-    <li><a href="#projects" class="nav-link">Projects</a></li>
-    <li><a href="#services" class="nav-link">Services</a></li>
-    <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
-    <li><a href="#contact" class="nav-link">Contact</a></li>
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ul>
-  <div id="mode-toggle">Dark/Light</div>
+
+  <!-- ADDED: DARK MODE BUTTON -->
+  <button class="toggle-btn" onclick="toggleTheme()">Dark/Light</button>
 </nav>
 
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-content">
-    <div class="hero-image">
-      <img src="https://via.placeholder.com/300x300.png?text=Kajal" alt="Kajal Suthar">
-    </div>
-    <div class="hero-text">
-      <h1>Kajal Suthar</h1>
-      <p id="typing"></p>
-      <button onclick="scrollToSection('projects')">View Projects</button>
-    </div>
+<!-- ---------------- HERO SECTION ---------------- -->
+<section class="hero" id="hero">
+  <img src="img.jpg" alt="" />
+  
+  <div class="hero-text">
+    <h1>Hello! I'm <span style="color:#4b67f5;">Kajal Suthar</span></h1>
+    <h2>Frontend Developer / React Developer</h2>
+    <p>I build clean, modern and responsive web experiences.</p>
+    <a href="#projects" class="btn">View Projects</a>
+    <a href="#contact" class="btn">Hire Me</a>
   </div>
 </section>
 
-<!-- ABOUT ME -->
-<section id="about">
+<!-- ---------------- ABOUT ---------------- -->
+<section class="about" id="about">
   <h2>About Me</h2>
-  <div class="container">
-    <p>Hello! I'm Kajal Suthar, a passionate Frontend Developer specializing in building responsive, interactive web applications using HTML, CSS, JavaScript, React, and Figma.</p>
-  </div>
+  <p>Hello!! I'm Kajal, a passionate Frontend Developer specializing in React.</p>
+  <p>I’m a fresher with strong design sense, skilled at creating visually appealing and user-friendly web interfaces.</p>
+  <a href="resume.pdf" class="btn" download>Download Resume</a>
 </section>
 
-<!-- SKILLS -->
+<!-- ---------------- SKILLS ---------------- -->
 <section id="skills">
   <h2>Skills</h2>
-  <div class="skills-list">
-    <div class="skill-bar"><span data-width="90%">HTML</span></div>
-    <div class="skill-bar"><span data-width="85%">CSS</span></div>
-    <div class="skill-bar"><span data-width="80%">JavaScript</span></div>
-    <div class="skill-bar"><span data-width="75%">React</span></div>
-    <div class="skill-bar"><span data-width="70%">Figma</span></div>
+
+  <div class="skills-grid">
+    <div class="skill-box"><h3>Frontend</h3><p>HTML, CSS, JavaScript, TypeScript</p></div>
+    <div class="skill-box"><h3>Frameworks</h3><p>React, Next.js, Angular</p></div>
+    <div class="skill-box"><h3>Styling</h3><p>Bootstrap, Styled Components</p></div>
+    <div class="skill-box"><h3>Tools</h3><p>Git, GitHub, VS Code, Webpack, Vite</p></div>
+    <div class="skill-box"><h3>Others</h3><p>REST APIs, Responsive Design, Figma</p></div>
   </div>
 </section>
 
-<!-- PROJECTS -->
+<!-- ---------------- PROJECTS ---------------- -->
 <section id="projects">
   <h2>Projects</h2>
-  <div class="filter-buttons">
-    <button class="active" onclick="filterProjects('all', event)">All</button>
-    <button onclick="filterProjects('html', event)">HTML/CSS</button>
-    <button onclick="filterProjects('react', event)">React</button>
-    <button onclick="filterProjects('figma', event)">Figma</button>
-  </div>
-  <div class="projects">
-    <div class="project-card" data-category="html" onclick="openLightbox(this)">
-      <img src="https://via.placeholder.com/400x200.png?text=Project+1" alt="Project 1">
-      <h3>Project 1</h3>
+
+  <div class="projects-grid">
+    <div class="project">
+      <img src="library.jpg" alt="Library Management System" />
+      <h3>Library Management System</h3>
+      <p>A responsive web app for managing books, users, and issuance records.</p>
+      <p><strong>Tech used:</strong> HTML, CSS, JS</p>
+      <ul><li>Manage books</li><li>User Dashboard</li><li>Responsive design</li></ul>
+      <a href="#">Live Demo</a> | <a href="#">GitHub</a>
     </div>
-    <div class="project-card" data-category="react" onclick="openLightbox(this)">
-      <img src="https://via.placeholder.com/400x200.png?text=Project+2" alt="Project 2">
-      <h3>Project 2</h3>
+
+    <div class="project">
+      <img src="hotel.jpg" alt="Hotel Management System" />
+      <h3>Hotel Management System</h3>
+      <p>A system UI for managing rooms, bookings, and customer data.</p>
+      <p><strong>Tech used:</strong> HTML, CSS, JS</p>
+      <ul><li>Booking management</li><li>Modern UI</li><li>Fast & responsive</li></ul>
+      <a href="#">Live Demo</a> | <a href="#">GitHub</a>
     </div>
-    <div class="project-card" data-category="figma" onclick="openLightbox(this)">
-      <img src="https://via.placeholder.com/400x200.png?text=Project+3" alt="Project 3">
-      <h3>Project 3</h3>
+
+    <div class="project">
+      <img src="event.jpg" alt="Event Management System" />
+      <h3>Event Management System</h3>
+      <p>An application for scheduling and handling events.</p>
+      <p><strong>Tech used:</strong> React, Bootstrap</p>
+      <ul><li>Event scheduling</li><li>User-friendly interface</li><li>Fully responsive</li></ul>
+      <a href="#">Live Demo</a> | <a href="#">GitHub</a>
     </div>
+
   </div>
 </section>
 
-<!-- SERVICES -->
-<section id="services">
-  <h2>Services</h2>
-  <div class="container">
-    <div class="services-card">Web Development</div>
-    <div class="services-card">UI/UX Design</div>
-    <div class="services-card">Responsive Layouts</div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section id="testimonials">
-  <h2>Testimonials</h2>
-  <div class="container">
-    <div class="testimonial">"Kajal delivered a fantastic website on time!" - Client A</div>
-    <div class="testimonial">"Highly recommended for frontend projects." - Client B</div>
-  </div>
-</section>
-
-<!-- CONTACT -->
+<!-- ---------------- CONTACT ---------------- -->
 <section id="contact">
-  <h2>Contact</h2>
-  <div class="contact">
-    <form onsubmit="submitForm(event)">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
+  <h2>Contact Me</h2>
+  <form class="contact-form">
+    <input type="text" placeholder="Your Name" required />
+    <input type="email" placeholder="Your Email" required />
+    <textarea rows="5" placeholder="Message"></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+
+  <div style="text-align:center; margin-top:20px;">
+    <p><strong>Email:</strong> yourmail@gmail.com</p>
+    <p><strong>Location:</strong> India</p>
+    <p>
+      <a href="#">GitHub</a> |
+      <a href="#">LinkedIn</a> |
+      <a href="#">Twitter</a>
+    </p>
   </div>
 </section>
 
-<!-- LIGHTBOX -->
-<div id="lightbox" onclick="closeLightbox(event)">
-  <img src="" alt="Project Lightbox">
-</div>
-
-<!-- BACK TO TOP -->
-<div id="backToTop" onclick="scrollToTop()">Top</div>
-
-<!-- FOOTER -->
+<!-- ---------------- FOOTER ---------------- -->
 <footer>
-  &copy; 2025 Kajal Suthar. All Rights Reserved.
+  © 2025 Kajal Suthar | Frontend Developer
 </footer>
 
 <script>
-// ===== PRELOADER =====
-window.addEventListener('load',()=>{document.getElementById('preloader').style.display='none';});
+/* MOBILE NAV */
+const hamburger = document.querySelector(".hamburger");
+const navMenu = document.querySelector("nav ul");
 
-// ===== SMOOTH SCROLL =====
-function scrollToSection(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});}
-function scrollToTop(){window.scrollTo({top:0,behavior:'smooth'});}
-
-// ===== SECTION ANIMATION =====
-const sections=document.querySelectorAll('section');
-const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');}});},{threshold:0.1});
-sections.forEach(section=>observer.observe(section));
-
-// ===== NAVBAR HIGHLIGHT =====
-const navLinks=document.querySelectorAll('.nav-link');
-const sectionIds=Array.from(navLinks).map(link=>link.getAttribute('href').substring(1));
-window.addEventListener('scroll',()=>{
-  let fromTop=window.scrollY+100;
-  sectionIds.forEach((id,index)=>{
-    const section=document.getElementById(id);
-    if(section.offsetTop<=fromTop && section.offsetTop+section.offsetHeight>fromTop){
-      navLinks.forEach(link=>link.classList.remove('active'));
-      navLinks[index].classList.add('active');
-    }
-  });
+hamburger.addEventListener("click", () => {
+  navMenu.classList.toggle("active");
 });
 
-// ===== TYPING EFFECT =====
-const typingText=["Frontend Developer","React Enthusiast","UI/UX Lover"];
-let typeIndex=0;let charIndex=0;
-const typingElement=document.getElementById('typing');
-function type(){if(charIndex<typingText[typeIndex].length){typingElement.textContent+=typingText[typeIndex][charIndex];charIndex++;setTimeout(type,100);}else{setTimeout(erase,1500);}}
-function erase(){if(charIndex>0){typingElement.textContent=typingText[typeIndex].substring(0,charIndex-1);charIndex--;setTimeout(erase,50);}else{typeIndex=(typeIndex+1)%typingText.length;setTimeout(type,500);}}
-document.addEventListener("DOMContentLoaded",type);
-
-// ===== FILTER PROJECTS =====
-function filterProjects(category,event){
-  const buttons=document.querySelectorAll('.filter-buttons button');buttons.forEach(btn=>btn.classList.remove('active'));
-  event.target.classList.add('active');
-  const projects=document.querySelectorAll('.project-card');
-  projects.forEach(proj=>{if(category==='all'||proj.dataset.category===category) proj.style.display='block'; else proj.style.display='none';});
+/* DARK / LIGHT MODE */
+function toggleTheme(){
+  document.body.classList.toggle("dark-mode");
 }
-
-// ===== LIGHTBOX =====
-function openLightbox(card){document.getElementById('lightbox').style.display='flex';document.querySelector('#lightbox img').src=card.querySelector('img').src;}
-function closeLightbox(e){if(e.target.id==='lightbox')document.getElementById('lightbox').style.display='none';}
-
-// ===== BACK TO TOP BUTTON =====
-window.addEventListener('scroll',()=>{document.getElementById('backToTop').style.display=(window.scrollY>300)?'block':'none';});
-
-// ===== SKILL BAR ANIMATION =====
-const skillSpans=document.querySelectorAll('.skill-bar span');
-window.addEventListener('scroll',()=>{skillSpans.forEach(span=>{const rect=span.getBoundingClientRect();if(rect.top<window.innerHeight){span.style.width=span.dataset.width;}});});
-
-// ===== CONTACT FORM =====
-function submitForm(e){e.preventDefault();alert('Message sent!');e.target.reset();}
 </script>
 
 </body>
